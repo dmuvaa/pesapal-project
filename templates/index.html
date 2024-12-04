@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Hash Spoofer</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Image Hash Spoofer</h1>
+            <form action="/spoof" method="post" enctype="multipart/form-data" id="spooferForm">
+                <div class="form-group">
+                    <label for="target_prefix">Target Hash Prefix:</label>
+                    <select id="target_prefix" name="target_prefix" required>
+                        <option value="" disabled selected>Select a hash prefix</option>
+                        <option value="0x24">0x24</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="image">Upload Image:</label>
+                    <div class="file-input-wrapper">
+                        <div class="file-input-button">Choose Image</div>
+                        <input type="file" 
+                               id="image" 
+                               name="image" 
+                               accept=".png,.jpg,.jpeg" 
+                               required>
+                    </div>
+                    <div class="selected-file" id="selected-file-name"></div>
+                </div>
+
+                <button type="submit" id="submitButton">Spoof Image</button>
+            </form>
+
+            <!-- Display error or success messages -->
+            <div id="errorMessage" class="message error" style="display: none;"></div>
+            <div id="successMessage" class="message success" style="display: none;"></div>
+
+            <div id="loadingMessage" class="loading-message" style="display: none;">
+                Spoofing in Progress, Kindly Wait...
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const fileInput = document.getElementById('image');
+            const fileNameDisplay = document.getElementById('selected-file-name');
+            const form = document.getElementById('spooferForm');
+            const submitButton = document.getElementById('submitButton');
+            const loadingMessage = document.getElementById('loadingMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+
+            fileInput.addEventListener('change', (e) => {
+                const fileName = e.target.files[0]?.name || 'No file selected';
+                fileNameDisplay.textContent = fileName;
+            });
+
+            form.addEventListener('submit', (e) => {
+                submitButton.disabled = true;
+                loadingMessage.style.display = 'block';
+                errorMessage.style.display = 'none'; // Reset error message
+                successMessage.style.display = 'none'; // Reset success message
+            });
+        });
+    </script>
+</body>
+</html>

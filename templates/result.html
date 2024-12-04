@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spoof Result</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Spoofing Result</h1>
+            {% if hash %}
+                <div class="result-info">
+                    <div class="result-field">
+                        <div class="result-label">Target Prefix:</div>
+                        <div>{{ target_prefix }}</div>
+                    </div>
+                    <div class="result-field">
+                        <div class="result-label">Generated Hash:</div>
+                        <div class="hash-value">{{ hash }}</div>
+                    </div>
+                </div>
+                {% if matches_prefix %}
+                    <div class="success-message">
+                        The hash starts with the specified prefix. The image was spoofed successfully.
+                    </div>
+                {% else %}
+                    <div class="error-message">
+                        The hash does not start with the specified prefix. The spoofing was not successful.
+                    </div>
+                {% endif %}
+                <div class="button-container">
+                    <a href="{{ download_path }}" download class="button">Download Spoofed Image</a>
+                    <a href="/" class="button secondary">Go Back</a>
+                </div>
+            {% else %}
+                <div class="error-message">
+                    Unfortunately, the image could not be spoofed to match the prefix within the iteration limit.
+                </div>
+                <div class="button-container">
+                    <a href="/" class="button secondary">Go Back</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
