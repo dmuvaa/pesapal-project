@@ -124,8 +124,3 @@ http://127.0.0.1:5000
 - **Large Images**: Processing might take longer for high-resolution images.
 - **Browser Issues**: Clear cache or try a different browser if the web interface doesn't load properly.
 
-## Contributing
-Contributions are welcome! Please fork the repository and submit a pull request.
-
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
